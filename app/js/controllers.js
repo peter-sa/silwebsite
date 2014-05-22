@@ -2,8 +2,16 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
-   .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
+angular.module('silwebsite.controllers', [])
+  .controller('CommonCtrl', ['$scope', 'syncData', '$location', function($scope, syncData, $location) {
+    syncData('navigation').$bind($scope, 'navigation');
+    $scope.isActive = function(viewLocation) {
+      return viewLocation == $location.path();
+    };
+    console.log($scope)
+  }])
+  .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
+      syncData('home/buttons').$bind($scope, 'buttons')
       syncData('syncedValue').$bind($scope, 'syncedValue');
    }])
 

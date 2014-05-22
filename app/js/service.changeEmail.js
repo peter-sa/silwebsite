@@ -1,4 +1,4 @@
-angular.module('myApp.service.changeEmail', ['myApp.service.login', 'myApp.service.firebase'])
+angular.module('silwebsite.service.changeEmail', ['silwebsite.service.login', 'silwebsite.service.firebase'])
    .factory('changeEmailService', ['$rootScope', 'firebaseRef', '$timeout', '$q', 'loginService',
       function($rootScope, firebaseRef, $timeout, $q, loginService) {
          var auth = $rootScope.auth;

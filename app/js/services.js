@@ -3,7 +3,7 @@
 
    /* Services */
 
-   angular.module('myApp.services', ['myApp.service.login', 'myApp.service.firebase', 'myApp.service.changeEmail'])
+   angular.module('silwebsite.services', ['silwebsite.service.login', 'silwebsite.service.firebase', 'silwebsite.service.changeEmail'])
 
       // put your services here!
       // .service('serviceName', ['dependency', function(dependency) {}]);
