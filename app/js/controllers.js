@@ -6,7 +6,7 @@ angular.module('silwebsite.controllers', [])
   .controller('NavbarCtrl', ['$scope', 'syncData', '$location', function($scope, syncData, $location) {
     syncData('navigation').$bind($scope, 'navigation');
     $scope.isActive = function(viewLocation) {
-      return viewLocation == $location.path();
+      return ('#'+$location.path()).slice(0, viewLocation.length) == viewLocation
     };
     console.log($scope)
   }])
