@@ -1,0 +1,21 @@
+<h2 align="center">School Profile</h2>
+<aside class="sidebar">
+  <section>
+    <h3>Graduation Requirements</h3>
+    <p>To graduate from SIL, students must complete the following {{resources_requirements_SIL.total_credits}} credits of coursework.</p>
+    <p>{{resources_requirements_SIL.credits_per_semester}} credits = 1 semester, {{2*resources_requirements_SIL.credits_per_semester}} credits = 2 semesters</p>
+  </section>
+  <section ng-repeat="requirement in resources_requirements_SIL.data">
+    <p class="sectionheader">{{requirement.text}}</p>
+    <p>
+      <span>{{requirement.total}} semesters required</span><span ng-if="requirement.including">, including</span><span ng-repeat="subreq in requirement.including">
+        <span ng-if="$last&&!$first">and</span>
+        {{subreq.total}}
+        <ng-pluralize count="{{subreq.total}}" when="{'one': 'semester', 'other': 'semesters'}"></ng-pluralize>
+        of {{subreq.text}}<span ng-if="!$last">,</span></span><span ng-if="requirement.alternative">
+        OR {{requirement.alternative.total}}
+        <ng-pluralize count="{{requirement.alternative.total}}" when="{'one': 'semester', 'other': 'semesters'}"></ng-pluralize> of {{requirement.alternative.text}}</span>.
+    </p>
+  </section>
+</aside>
+<div ng-bind-html="trust(profile.message)"></div>
