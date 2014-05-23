@@ -3,17 +3,33 @@
 /* Controllers */
 
 angular.module('silwebsite.controllers', [])
-  .controller('NavbarCtrl', ['$scope', 'syncData', '$location', function($scope, syncData, $location) {
-    syncData('navigation').$bind($scope, 'navigation');
-    $scope.isActive = function(viewLocation) {
-      return ('#'+$location.path()).slice(0, viewLocation.length) == viewLocation
-    };
-    console.log($scope)
-  }])
-  .controller('HomeCtrl', ['$scope', 'syncData', function($scope, syncData) {
-      syncData('home/buttons').$bind($scope, 'buttons')
-      syncData('syncedValue').$bind($scope, 'syncedValue');
-   }])
+    .controller('NavbarCtrl', ['$scope', 'syncData', '$location', function($scope, syncData, $location) {
+        syncData('navigation').$bind($scope, 'navigation');
+        $scope.isActive = function(viewLocation) {
+            return ('#'+$location.path()).slice(0, viewLocation.length) == viewLocation
+        };
+        console.log($scope)
+    }])
+    .controller('HomeCtrl', ['$scope', 'syncData', '$routeParams', '$http', function($scope, syncData, $routeParams, $http) {
+        syncData('home/buttons').$bind($scope, 'buttons')
+        syncData('syncedValue').$bind($scope, 'syncedValue');
+    }])
+
+    .controller('GenericCtrl', ['$scope', 'syncData', '$routeParams', '$sce', 'firebaseRef', function($scope, syncData, $routeParams, $sce, firebaseRef) {
+        var split = $routeParams.path.split('/')
+        syncData($routeParams.path).$bind($scope, split[split.length-1])
+
+        var ref = firebaseRef($routeParams.path+'/ref')
+        ref.on('child_added', function(snapshot) {
+            var uri = snapshot.val();
+            console.log()
+            syncData(uri).$bind($scope, uri.replace(/\//g,'_'));
+        })
+
+        $scope.trust = function(data) {
+            return $sce.trustAsHtml(data);
+        }
+    }])
 
    .controller('LoginCtrl', ['$scope', 'loginService', '$location', function($scope, loginService, $location) {
       $scope.email = null;

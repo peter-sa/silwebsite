@@ -6,7 +6,7 @@
 
 .menu {
   list-style: none;
-  border-bottom: 0.1em solid black;
+/*  border-bottom: 0.1em solid black;*/
   margin-bottom: 2em;
   padding: 0 0 0.5em;
 }
@@ -67,4 +67,29 @@ fieldset {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
+}
+
+.sidebar {
+    background-color: #C6E6E8;
+    float: left;
+    border-bottom: 1px solid black;
+    width: 34%;
+    margin: auto 1em;
+}
+
+.sidebar .sectionheader {
+    font-weight: bold;
+}
+
+.sidebar > section {
+    overflow: auto;
+    border: 1px solid black;
+    border-bottom: none;
+    padding-left: 1em;
+}
+
+h2 {
+    border-bottom: 1px solid black;
+    padding-bottom: 1ex;
+    margin-bottom: 1ex;
 }
